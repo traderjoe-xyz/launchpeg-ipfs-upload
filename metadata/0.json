@@ -1,0 +1,10 @@
+{
+  "id": 0,
+  "attributes": [
+    { "trait_type": "Hat", "value": "Seaman's Hat" },
+    { "trait_type": "Background", "value": "Orange" },
+    { "trait_type": "Mouth", "value": "Phoneme  ooo" },
+    { "trait_type": "Fur", "value": "Dark Brown" },
+    { "trait_type": "Eyes", "value": "Sad" }
+  ]
+}
