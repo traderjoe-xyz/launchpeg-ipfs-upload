@@ -7,6 +7,8 @@ Two IPFS hashes will be returned, the first one is the media folder, the second 
 
 ## Usage
 
+Insert your Pinata API key on the .env file
+
 ```
 yarn install
 yarn run upload
