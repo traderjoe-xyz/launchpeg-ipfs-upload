@@ -45,16 +45,16 @@ const main = async () => {
 
         for (let i = 0; i < files.length; i++) {
           const file = files[i];
-          const fileNumber = file.substring(0, file.indexOf("."));
+          const fileName = file.substring(0, file.indexOf("."));
           // Content only
           let metadata;
           await jsonfile
-            .readFile(metadataPath + fileNumber + ".json")
+            .readFile(metadataPath + fileName + ".json")
             .then((data) => {
               metadata = data;
             })
             .catch((err) => {
-              missingMetadata.push(fileNumber);
+              missingMetadata.push(fileName);
             });
 
           const uploadData = {
@@ -62,7 +62,7 @@ const main = async () => {
             ...metadata,
           };
 
-          await jsonfile.writeFile(uploadPath + fileNumber, uploadData);
+          await jsonfile.writeFile(uploadPath + fileName, uploadData);
         }
 
         if (missingMetadata.length > 0) {
