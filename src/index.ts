@@ -3,6 +3,7 @@ import jsonfile from "jsonfile";
 import fs from "fs";
 import pinataSDK, { PinataPinOptions } from "@pinata/sdk";
 import chalk from "chalk";
+import { exit } from "process";
 dotenv.config();
 const pinata = pinataSDK(process.env.PINATA_API_KEY, process.env.PINATA_API_SECRET);
 
@@ -11,25 +12,30 @@ const imagesPath = currentLocation + "/images/";
 const metadataPath = currentLocation + "/metadata/";
 const uploadPath = currentLocation + "/upload/";
 
-const NFT_BATCH_NAME = "Test NFT series";
-const mediaOptions: PinataPinOptions = {
-  pinataMetadata: {
-    name: NFT_BATCH_NAME + " : medias",
-  },
-  pinataOptions: {
-    cidVersion: 1,
-  },
-};
-const metadataOptions: PinataPinOptions = {
-  pinataMetadata: {
-    name: NFT_BATCH_NAME + " : metadata",
-  },
-  pinataOptions: {
-    cidVersion: 1,
-  },
-};
-
 const main = async () => {
+  const collectionName = process.argv[2];
+  if (!collectionName) {
+    console.log(chalk.redBright("Please enter the collection name as argument"));
+    exit(0);
+  }
+
+  const mediaOptions: PinataPinOptions = {
+    pinataMetadata: {
+      name: collectionName + " : medias",
+    },
+    pinataOptions: {
+      cidVersion: 1,
+    },
+  };
+  const metadataOptions: PinataPinOptions = {
+    pinataMetadata: {
+      name: collectionName + " : metadata",
+    },
+    pinataOptions: {
+      cidVersion: 1,
+    },
+  };
+
   pinata
     .pinFromFS(imagesPath, mediaOptions)
     .then((result) => {
