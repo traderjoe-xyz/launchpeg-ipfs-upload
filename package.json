@@ -1,17 +1,13 @@
 {
-  "name": "pinata-upload",
+  "name": "@traderjoe-xyz/launchpeg-ipfs-upload",
   "version": "0.0.1",
-  "description": "Trader Joe script for uploading files to Pinata",
-  "main": "dist/bin/cli.js",
+  "description": "Trader Joe scripts for uploading files to IPFS",
+  "main": "dist/index.js",
   "author": "Patate",
   "license": "MIT",
   "dependencies": {
     "@pinata/sdk": "^1.1.24",
     "chalk": "4.1.2",
-    "cli-table3": "^0.6.1",
-    "commander": "^9.1.0",
-    "graphql": "^16.3.0",
-    "graphql-request": "^4.2.0",
     "jsonfile": "^6.1.0"
   },
   "devDependencies": {
