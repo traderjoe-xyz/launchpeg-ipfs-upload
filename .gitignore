@@ -20,6 +20,9 @@ node_modules/
 
 cache/
 artifacts/
+images/
+images-backup/
+upload/
 
 .yalc
 yalc.lock
