@@ -153,3 +153,8 @@ types/
 # Codegen
 src/generated/*
 graphql.schema.json
+
+images/
+shuffle-images/
+metadata/
+*.csv
