@@ -7,6 +7,7 @@ import chalk from "chalk";
 import cliProgress from "cli-progress";
 import jsonfile from "jsonfile";
 import pinataSDK, { PinataPinOptions } from "@pinata/sdk";
+
 dotenv.config();
 
 const currentLocation = process.cwd();
@@ -25,7 +26,6 @@ const pinDirectoryToPinata = async () => {
   const data = await buildFormData(files, collectionName);
 
   console.log(`Uploading ${files.length} files...`);
-
   const response = await uploadMedias(data);
 
   console.log(chalk.blue("Content IPFS hash :"));
@@ -34,6 +34,8 @@ const pinDirectoryToPinata = async () => {
   await createMetadataFiles(response.IpfsHash);
 
   await uploadMetadata(collectionName);
+
+  // await unpin("QmcweR4wDJFk55LrMGBZRCXh4KsFoe2rku7HVfuBWX5o8u");
 };
 
 const buildFormData = async (files: string[], collectionName: string) => {
@@ -118,6 +120,8 @@ const createMetadataFiles = async (mediasHash: string) => {
 };
 
 const uploadMetadata = async (collectionName: string) => {
+  const DS_StoreFile = uploadPath + ".DS_Store";
+
   // Creating and pinning metadata
   const pinata = pinataSDK(process.env.PINATA_API_KEY, process.env.PINATA_API_SECRET);
 
@@ -136,6 +140,20 @@ const uploadMetadata = async (collectionName: string) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+const unpin = async (cid: string) => {
+  const url = `https://api.pinata.cloud/pinning/unpin/${cid}`;
+
+  const response = await got(url, {
+    method: "DELETE",
+    headers: {
+      pinata_api_key: process.env.PINATA_API_KEY,
+      pinata_secret_api_key: process.env.PINATA_API_SECRET,
+    },
+  });
+
+  console.log(response.statusCode);
 };
 
 pinDirectoryToPinata();

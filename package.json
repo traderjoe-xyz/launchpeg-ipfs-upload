@@ -9,10 +9,13 @@
     "@pinata/sdk": "^1.1.24",
     "chalk": "4.1.2",
     "cli-progress": "^3.11.1",
+    "csv-parse": "^5.2.0",
     "dotenv": "^16.0.0",
+    "files-from-path": "^0.2.6",
     "fs-readdir-recursive": "^1.1.0",
     "got": "v11",
-    "jsonfile": "^6.1.0"
+    "jsonfile": "^6.1.0",
+    "nft.storage": "^6.3.0"
   },
   "devDependencies": {
     "@types/fs-readdir-recursive": "^1.0.0",
@@ -22,6 +25,6 @@
     "typescript": "^4.6.3"
   },
   "scripts": {
-    "upload": "yarn tsc && node dist/indexV2.js"
+    "upload": "yarn tsc && node dist/index.js"
   }
 }
